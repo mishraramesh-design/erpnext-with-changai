@@ -1,0 +1,10 @@
+ARG FRAPPE_PATH=https://github.com/frappe/frappe
+ARG FRAPPE_BRANCH=version-15
+ARG ERPNEXT_BRANCH=version-15
+ARG PYTHON_VERSION=3.10.13
+ARG NODE_VERSION=18.18.2
+ARG APPS_JSON_BASE64
+
+FROM frappe/erpnext:version-15
+
+# Official custom app installation happens via APPS_JSON_BASE64 in the layered build
