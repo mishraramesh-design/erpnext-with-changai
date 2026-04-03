@@ -1,4 +1,4 @@
-FROM frappe/erpnext-worker:version-15
+# Use the official Frappe custom build base
+FROM frappe/bench:latest
 
-# This image is used as base for custom apps
-# The actual app installation happens via GitHub Actions + apps.json
+# The build will use APPS_JSON_BASE64 to install all apps (frappe, erpnext, changAI)
