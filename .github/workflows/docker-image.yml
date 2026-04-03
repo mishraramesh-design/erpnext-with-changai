@@ -35,6 +35,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/erpnext-with-changai:latest
           build-args: |
+            FRAPPE_PATH=https://github.com/frappe/frappe
             FRAPPE_BRANCH=version-15
             ERPNEXT_BRANCH=version-15
             APPS_JSON_BASE64=${{ steps.appsjson.outputs.APPS_JSON_BASE64 }}
