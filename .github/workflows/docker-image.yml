@@ -21,13 +21,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Prepare APPS_JSON_BASE64
+        id: appsjson
+        run: |
+          APPS_JSON_BASE64=$(cat apps.json | base64 -w 0)
+          echo "APPS_JSON_BASE64=${APPS_JSON_BASE64}" >> $GITHUB_OUTPUT
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/erpnext-with-changai:latest
           build-args: |
             FRAPPE_BRANCH=version-15
             ERPNEXT_BRANCH=version-15
+            APPS_JSON_BASE64=${{ steps.appsjson.outputs.APPS_JSON_BASE64 }}
