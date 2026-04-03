@@ -1,0 +1,9 @@
+ARG FRAPPE_PATH=https://github.com/frappe/frappe
+ARG FRAPPE_BRANCH=version-15
+ARG ERPNEXT_BRANCH=version-15
+ARG APPS_JSON_BASE64
+
+FROM frappe/erpnext-worker:version-15
+
+# Custom apps (frappe, erpnext, changAI) are installed via APPS_JSON_BASE64
+# during the bench init process in the base image
